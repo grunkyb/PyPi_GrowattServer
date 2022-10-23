@@ -5,6 +5,7 @@ import matplotlib.dates as mdates
 from datetime import datetime
 
 date = datetime.strptime('2022-10-22', '%Y-%m-%d')
+save = True
 
 api = growattServer.GrowattApi()
 login_response = api.login('USERNAME_EMAIL',
@@ -66,4 +67,7 @@ plt.xlabel('Time (hh:mm)', fontsize=10)
 plt.ylabel('Energy (kWh)', fontsize=10)
 plt.title('Growatt', fontsize=12, fontweight='bold')
 plt.legend(fontsize=9, edgecolor='1')
+if save:
+    filename = 'Growatt_prod-cons_'+date.strftime('%Y-%m-%d')+'.png'
+    plt.savefig(filename, dpi=300)
 plt.show()
